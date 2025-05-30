@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparent Registration Form</title>
+    <link rel="stylesheet" href="register.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+
+    <!-- Background Container -->
+    <div class="bg-img">
+        <div class="content">
+            <header>Register</header>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm)">
+                
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input type="text" formControlName="name" required placeholder="Enter your Name">
+                </div>
+
+                <div class="field space">
+                    <span class="fa fa-envelope"></span>
+                    <input type="email" formControlName="email" required placeholder="Enter your Email">
+                </div>
+
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" formControlName="password" class="pass-key" required placeholder="Password">
+                    <span class="show">SHOW</span>
+                </div>
+
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" formControlName="passwordRepeat" required placeholder="Repeat Password">
+                </div>
+
+                <div class="field space">
+                    <span class="fa fa-user-tag"></span>
+                    <select class="form-select" formControlName="roles" >
+                        <option value="admin" >Admin</option>
+                        <option value="user" >User</option>
+                    </select>
+                </div>
+
+                <div class="field space">
+                    <input type="submit" value="REGISTER">
+                </div>
+
+            </form>
+
+            <div class="signup">
+                Already have an account? <a href="login">Login Now</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pass_field = document.querySelector('.pass-key');
+        const showBtn = document.querySelector('.show');
+        showBtn.addEventListener('click', function(){
+            if(pass_field.type === "password"){
+                pass_field.type = "text";
+                showBtn.textContent = "HIDE";
+                showBtn.style.color = "#3498db";
+            } else {
+                pass_field.type = "password";
+                showBtn.textContent = "SHOW";
+                showBtn.style.color = "#222";
+            }
+        });
+    </script>
+
+</body>
+</html>

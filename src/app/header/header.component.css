@@ -1,0 +1,45 @@
+/* Navbar Styling */
+.custom-navbar {
+    background-color: rgba(147, 159, 162, 0.5); /* Semi-transparent */
+    backdrop-filter: blur(10px); 
+    padding: 6px 12px;
+    min-height: 50px;
+    position: fixed; /* Makes navbar fixed at the top */
+    top: 0; /* Sticks it to the top */
+    left: 0;
+    width: 100%; /* Ensures full-width coverage */
+    z-index: 1000; /* Keeps it above other content */
+}
+
+/* Brand Name and Icon */
+.navbar-brand {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5rem;
+    color: black !important;
+}
+
+/* Navigation Links */
+.nav-link {
+    color: black !important;
+    font-size: 1.2rem;
+    transition: color 0.3s ease-in-out;
+    font-weight:600;
+}
+
+/* Hover Effect */
+.nav-hover:hover {
+    color: white !important; /* Changes color on hover */
+}
+
+/* Adjusting Icon Size */
+.fa-user-graduate {
+    font-size: 1.7rem;
+}
+
+.custom-navbar .navbar-toggler {
+    border-color: #DA70D6;
+  }
+   
+  .custom-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(218,112,214, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }

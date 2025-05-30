@@ -1,0 +1,246 @@
+.cta-button {
+    display: inline-block;
+    background-color:rgb(121, 137, 141);
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.arrow {
+    font-size: 1.4rem;
+    margin-left: 5px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #42435c;
+}
+
+
+.cta-button:hover .arrow {
+    margin-left: 10px; 
+}
+
+.course-container {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Course Card */
+.course {
+    position: relative;
+    width: 300px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Course Image */
+.course img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Course Title Below Image */
+.course-title {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Course Overlay (Hover Effect) */
+.course-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Hover Effects */
+.course:hover img {
+    opacity: 0.3; /* Make image transparent on hover */
+}
+
+.course:hover .course-overlay {
+    opacity: 1; /* Show overlay content */
+}
+
+.course:hover {
+    transform: scale(1.08); /* Enlarged hover effect */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+}
+
+.animated-banner {
+    background: linear-gradient(90deg, #6E8A93, #355F6E); /* Smooth gradient shade */
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.animated-banner h4 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.animated-banner:hover h4 {
+    transform: scale(1.1);
+    color: #f8f9fa; /* Slightly lighter white */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.why-us {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000; /* Dark accent color */
+    padding: 20px;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.benefits-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+}
+
+.benefit {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.benefit p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Hover Animation */
+.benefit:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Background Animation */
+.benefit::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease-in-out;
+}
+
+.benefit:hover::before {
+    top: 0;
+}
+
+/* Icon Styling */
+.icon i {
+    font-size: 80px; /* Large icon */
+    color: #355F6E; /* Dark accent color */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+    background-image: url('/start.jpg'); /* Background image */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
