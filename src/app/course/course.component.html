@@ -1,1 +1,86 @@
-<p>course works!</p>
+<!-- Search and Create Button -->
+<div class="d-flex justify-content-between align-items-center mb-4 pt-5 mt-5">
+  <input type="text" class="form-control w-50" placeholder="Search by course title..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+  <button *ngIf="userRole === 'ADMIN'" class="btn btn-success ms-3" data-bs-toggle="modal" data-bs-target="#courseModal" (click)="openCreateForm()">+ Create Course</button>
+</div>
+
+<!-- Course Cards -->
+<div class="row">
+  <div class="col-md-4 mb-4" *ngFor="let course of filteredCourses">
+    <div class="card shadow-sm h-100">
+      <img [src]="course.imageUrl || 'data.jpg'" class="card-img-top" alt="{{ course.courseTitle }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ course.courseTitle }}</h5>
+        <p class="card-text">{{ course.courseDescription }}</p>
+        <p><strong>Category:</strong> {{ course.courseCategory }}</p>
+        <p><strong>Duration:</strong> {{ course.courseDuration }}</p>
+        <p><strong>Prerequisites:</strong> {{ course.prerequisites || 'None' }}</p>
+
+        <!-- Student -->
+        <button *ngIf="userRole === 'STUDENT'" class="btn btn-primary w-100" (click)="enroll(course.courseId)">Enroll</button>
+
+        <!-- Instructor -->
+        <div *ngIf="userRole === 'INSTRUCTOR'" class="d-grid gap-2">
+          <button class="btn btn-warning" (click)="updateCourse(course)">Edit</button>
+          <button class="btn btn-info" (click)="manageQuiz(course.courseId)">Manage Quizzes</button>
+        </div>
+
+        <!-- Admin -->
+        <div *ngIf="userRole === 'ADMIN'" class="d-grid gap-2">
+          <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#courseModal" (click)="updateCourse(course)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteCourse(course.courseId)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Create/Edit -->
+<div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow">
+      <form (ngSubmit)="createCourse()" #courseForm="ngForm">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="courseModalLabel">{{ isEditMode ? 'Edit Course' : 'Create Course' }}</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Course Image URL</label>
+            <input type="text" class="form-control" [(ngModel)]="newCourse.imageUrl" name="imageUrl">
+          </div>          
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" [(ngModel)]="newCourse.courseTitle" name="title" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" [(ngModel)]="newCourse.courseDescription" name="description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input type="text" class="form-control" [(ngModel)]="newCourse.courseCategory" name="category">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Duration</label>
+            <input type="text" class="form-control" [(ngModel)]="newCourse.courseDuration" name="duration">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Instructor Id</label>
+            <input type="text" class="form-control" [(ngModel)]="newCourse.instructorId" name="instructorId">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prerequisites</label>
+            <input type="text" class="form-control" [(ngModel)]="newCourse.prerequisites" name="prerequisites">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" [disabled]="courseForm.invalid" data-bs-dismiss="modal">
+            {{ isEditMode ? 'Update' : 'Create' }}
+          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

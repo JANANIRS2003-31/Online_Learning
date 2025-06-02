@@ -15,6 +15,7 @@ export class LoginserviceService {
   // }
 
   path="http://localhost:9090/auth/authenticate"
+  
  
   constructor(private client:HttpClient,private router:Router) { }
  
@@ -22,7 +23,7 @@ export class LoginserviceService {
     console.log("ins service add");
     console.log(loginUser);
     console.log();
-    this.router.navigate(["/home"])
+    this.router.navigate(["/body"])
     return this.client.post(this.path, loginUser,{responseType:'text'}).pipe(
       tap(()=>{
         this.isLoggedIn=true

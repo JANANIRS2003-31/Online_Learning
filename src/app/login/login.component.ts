@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 import { LoginserviceService } from '../loginservice.service';
+import { jwtDecode } from 'jwt-decode';
  
 @Component({
   selector: 'login',
@@ -29,8 +30,40 @@ export class LoginComponent {
   authLogin(form:NgForm):any{
     console.log("logged in............")
     console.log(form.value)
-    this.myservice.LoginUser(form.value).subscribe(response=>{console.log("JWT"+response)});
+    console.log("username",form.value.username);
+    localStorage.setItem("username",form.value.username);
+    // this.myservice.LoginUser(form.value).subscribe(response=>{console.log("JWT"+response)});
+
+    this.myservice.LoginUser(form.value).subscribe({
+      next: (response) => {
+        localStorage.setItem("token", response);
+        console.log("Login successful:", response);
+        const token = response;
+        const decoded = jwtDecode<JwtPayload>(token);
+        const role: string = decoded.roles ?? 'No role found';
+        console.log(role);
+        // if(role === 'ADMIN'){
+        //   this.router.navigate(["/cust-home"]);
+        // }
+        // else{
+        //   this.router.navigate(["/agent-home"]);
+        // }
+       
+       
+ 
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          alert("Invalid credentials. Please try again.");
+        } else {
+          alert("Something went wrong. Please try later.");
+        }
+      }
+    });
   }
  
  
+}
+interface JwtPayload {
+  roles?: string;
 }
