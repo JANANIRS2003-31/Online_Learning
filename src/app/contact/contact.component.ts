@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EmailService } from '../email.service';
 
 declare var bootstrap: any;
 
@@ -19,9 +20,23 @@ export class ContactUsComponent {
     message: ''
   };
 
-  constructor() { }
+  constructor(private emailService:EmailService) { }
 
   onSubmit() {
+    const recipient = this.contactData.email;
+            const msgBody = `Username: ${this.contactData.name},\n Subject: ${this.contactData.subject},\n Employee ID: ${this.contactData.message}`;
+            const subject = 'Login credentials';
+
+            this.emailService.sendEmail(recipient, msgBody, subject).subscribe({
+              next: () => {
+                alert('Email sent successfully!');
+              },
+              error: (err) => {
+                console.error('Failed to send email:', err);
+                alert('Failed to send email.');
+              }
+            });
+ 
     console.log('Contact form submitted:', this.contactData);
     alert('Thank you for your message! We will get back to you soon.');
     this.resetForm();
