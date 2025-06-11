@@ -1,31 +1,21 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 import { LoginserviceService } from '../loginservice.service';
 import { jwtDecode } from 'jwt-decode';
+import { CommonModule } from '@angular/common';
  
 @Component({
   selector: 'login',
-  imports: [FormsModule],
+  imports: [FormsModule,ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
  
 export class LoginComponent {
   constructor(private router:Router,private commonService:CommonServiceService,private myservice:LoginserviceService) { }
-  // validate(form:NgForm){
-  //   console.log("logged in.......")
-  //   console.log(form)
-  //   console.log(form.value)
-  //   var uname= localStorage.getItem("username")
-  //   var psw=localStorage.getItem("password")
-  //   if(uname==form.value.username && psw==form.value.password){
-  //     this.commonService.login()
-  //     console.log("logged in")
-  //     this.router.navigate([""])
-  //   }
-  // }
+
   token:string;
   authLogin(form:NgForm):any{
     console.log("logged in............")
@@ -42,13 +32,7 @@ export class LoginComponent {
         const decoded = jwtDecode<JwtPayload>(token);
         const role: string = decoded.roles ?? 'No role found';
         console.log(role);
-        // if(role === 'ADMIN'){
-        //   this.router.navigate(["/cust-home"]);
-        // }
-        // else{
-        //   this.router.navigate(["/agent-home"]);
-        // }
-       
+        this.router.navigate(["/course"])
        
  
       },
@@ -56,7 +40,7 @@ export class LoginComponent {
         if (err.status === 403) {
           alert("Invalid credentials. Please try again.");
         } else {
-          alert("Something went wrong. Please try later.");
+          alert("Provide correct credentials");
         }
       }
     });
@@ -66,4 +50,5 @@ export class LoginComponent {
 }
 interface JwtPayload {
   roles?: string;
+  userId?: number;
 }

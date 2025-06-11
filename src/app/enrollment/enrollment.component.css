@@ -1,0 +1,167 @@
+/* General Body & Container */
+body {
+    background-color: #f2f5f9; /* A soft, light blue-gray background for the page */
+    font-family: 'Inter', sans-serif; /* A modern, clean font like Inter or Montserrat */
+    color: #333; /* Darker text for readability */
+  }
+  
+  .container.mt-5 {
+    max-width: 1100px; /* Slightly wider container for more courses per row */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Page Heading */
+  h2 {
+    font-size: 2.5rem; /* Larger and more impactful heading */
+    font-weight: 700;
+    color: #2c3e50; /* A deep, sophisticated blue-gray */
+    margin-bottom: 2.5rem; /* More space below the heading */
+    text-align: center;
+    position: relative; /* For the subtle underline effect */
+    padding-bottom: 0.5rem;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; /* Short, decorative underline */
+    height: 4px;
+    background-color: #6d7a88; /* A subtle accent blue */
+    border-radius: 2px;
+  }
+  
+  /* Course Cards */
+  .card.shadow-sm {
+    border-radius: 1rem; /* More rounded corners */
+    overflow: hidden; /* Ensures image and content stay within rounded bounds */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer, more pronounced shadow */
+    background-color: #ffffff; /* Crisp white background for cards */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
+    border: none; /* Remove default card border */
+  }
+  
+  .card.shadow-sm:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  }
+  
+  .card-img-top {
+    height: 200px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.8rem; /* More generous padding inside the card body */
+    display: flex; /* Use flexbox for consistent layout */
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to the bottom */
+  }
+  
+  .card-title {
+    font-size: 1.4rem; /* Slightly larger, bolder title */
+    font-weight: 600;
+    color: #2b3956; /* Your preferred deep muted blue */
+    margin-bottom: 0.8rem;
+    display: -webkit-box; /* For multi-line truncation */
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card-text {
+    font-size: 0.95rem; /* Standard text size */
+    color: #6c757d; /* Muted gray for descriptions */
+    line-height: 1.6;
+    flex-grow: 1; /* Allows description to take available space */
+    margin-bottom: 1.5rem; /* Space before the button */
+    display: -webkit-box; /* For multi-line truncation */
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Start Learning Button */
+  .btn-primary {
+    background-color: #2b3956; /* A vibrant, engaging blue for the primary action */
+    border-color: #2b3956;
+    color: #ffffff;
+    padding: 0.85rem 1.5rem; /* Good button size */
+    font-size: 1.05rem; /* Readable font size */
+    font-weight: 600;
+    border-radius: 0.7rem; /* More rounded button */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* Soft blue shadow */
+  }
+  
+  .btn-primary:hover {
+    background-color: #2b3956; /* Darker blue on hover */
+    border-color: #2b3956;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* No Courses Message */
+  .alert.alert-warning {
+    background-color: #fff3cd; /* Light yellow background */
+    border-color: #ffeeba; /* Slightly darker border */
+    color: #856404; /* Dark yellow text */
+    border-radius: 0.75rem;
+    padding: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 991.98px) {
+    .col-md-4 {
+      flex: 0 0 50%; /* Two cards per row on medium screens */
+      max-width: 50%;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.3rem;
+    }
+    .card-text {
+      font-size: 0.9rem;
+    }
+    .btn-primary {
+      padding: 0.75rem 1.2rem;
+      font-size: 1rem;
+    }
+    .col-md-4 {
+      flex: 0 0 100%; /* One card per row on small screens */
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .container.mt-5 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+    }
+    .card-img-top {
+      height: 180px;
+    }
+  }
+

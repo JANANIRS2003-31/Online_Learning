@@ -1,0 +1,68 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto; /* Added vertical margin for better spacing */
+  padding: 20px; /* Added padding inside the container */
+  background-color: #f9f9f9; /* Light background for the container */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px; /* More space below the heading */
+  font-size: 2.2em; /* Larger heading font size */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.1em; /* Slightly larger font size */
+  color: #777;
+  padding: 20px 0; /* Padding for better visual separation */
+  background-color: #e9e9e9; /* Light background for loading message */
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse; /* Collapses borders for a cleaner look */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Shadow for the table itself */
+  border-radius: 8px; /* Rounded corners for the table */
+  overflow: hidden; /* Ensures rounded corners are applied to content */
+}
+
+th, td {
+  text-align: center;
+  padding: 12px 15px; /* Increased padding for better readability */
+  border-bottom: 1px solid #ddd; /* Light border at the bottom of rows */
+}
+
+th {
+  background-color: #283748; /* Primary blue background for headers */
+  color: white; /* White text for headers */
+  font-weight: bold;
+  text-transform: uppercase; /* Uppercase text for headers */
+  font-size: 0.95em;
+  letter-spacing: 0.5px; /* Slight letter spacing for headers */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Zebra striping for even rows */
+}
+
+tr:hover {
+  background-color: #e0e0e0; /* Highlight row on hover */
+  cursor: pointer; /* Indicate interactivity on hover */
+}
+
+td {
+  color: #555; /* Slightly darker text for data cells */
+  font-size: 1em;
+}
+
+/* Style for the last row's bottom border to avoid double border */
+table tr:last-child td {
+  border-bottom: none;
+}

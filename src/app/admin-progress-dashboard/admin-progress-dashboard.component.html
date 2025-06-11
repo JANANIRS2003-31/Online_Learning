@@ -1,0 +1,44 @@
+<div class="container mt-4">
+    <h2>Hello! {{username | uppercase}}</h2>
+    <h2 class="text-center mb-4"> Progress Dashboard</h2>
+
+    <div class="summary-container">
+        <div class="summary-card bg-primary">
+            <h4>Total Students Enrolled</h4>
+            <p>{{ totalStudents }}</p>
+        </div>
+        <div class="summary-card bg-info">
+            <h4>Total Course Enrollments</h4>
+            <p>{{ totalEnrollments }}</p>
+        </div>
+        <div class="summary-card bg-success">
+            <h4>Average Completion %</h4>
+            <p>{{ averageCompletion }}%</p>
+        </div>
+    </div>
+
+    <div class="row chart-section">
+        <div class="col-md-6 chart-card">
+            <h3 class="chart-title">Student Completion Rates</h3>
+            <canvas id="barChart"></canvas>
+        </div>
+        <div class="col-md-6 chart-card">
+            <h3 class="chart-title">Courses Enrolled by Student</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+        <div class="col-md-12 chart-card">
+            <h3 class="chart-title">Overall Course Enrollment Statistics</h3>
+            <canvas id="courseChart"></canvas>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3 class="text-center">Leaderboard - Top Students</h3>
+        <ul class="list-group">
+            <li *ngFor="let student of leaderboardData; let i = index" class="list-group-item d-flex justify-content-between">
+                <span>Rank {{ i+1 }} - Student ID: {{ student.userId }}</span>
+                <span class="badge" [ngClass]="getBadgeClass(i)">{{ student.courseCompletionPercentage }}%</span>
+            </li>
+        </ul>
+    </div>
+</div>

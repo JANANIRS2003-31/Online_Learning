@@ -1,45 +1,259 @@
-/* Navbar Styling */
+/* --- Navbar Styling --- */
 .custom-navbar {
-    background-color: rgba(147, 159, 162, 0.5); /* Semi-transparent */
-    backdrop-filter: blur(10px); 
-    padding: 6px 12px;
-    min-height: 50px;
-    position: fixed; /* Makes navbar fixed at the top */
-    top: 0; /* Sticks it to the top */
-    left: 0;
-    width: 100%; /* Ensures full-width coverage */
-    z-index: 1000; /* Keeps it above other content */
+    /* Changed to transparent grey background */
+    background-color: rgba(182, 181, 181, 0.5); /* Transparent grey */
+    backdrop-filter: blur(8px); /* Subtle blur effect */
+    -webkit-backdrop-filter: blur(8px); /* For Safari support */
+    padding: 0.75rem 1.25rem; /* Increased padding for a more spacious feel */
+    min-height: 70px; /* Slightly taller navbar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transitions for any changes */
 }
+
+
+.custom-navbar.scrolled {
+    background-color: rgba(254, 254, 254, 0.7); /* Slightly less transparent on scroll */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
 
 /* Brand Name and Icon */
 .navbar-brand {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.5rem;
-    color: black !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Original font family for brand name */
+    font-size: 1.5rem; /* Original font size for Impact font */
+    font-weight: normal; /* Normal weight for Impact font */
+    color: #2c3e50 !important; /* Use your brand's dark blue */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
 }
+
+.navbar-brand:hover {
+    color: #36486b !important; /* Accent color: Deep Muted Blue on hover */
+}
+
+.navbar-brand .brand-icon {
+    font-size: 2rem; /* Larger icon */
+    color: #36486b; /* Accent color: Deep Muted Blue for the icon */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover .brand-icon {
+    transform: scale(1.1); /* Subtle zoom on icon hover */
+    color: #2c3e50; /* Change icon color on brand hover (to dark blue) */
+}
+
 
 /* Navigation Links */
+.navbar-nav .nav-item {
+    margin: 0 0.8rem; /* Consistent spacing between nav items */
+}
+
 .nav-link {
-    color: black !important;
-    font-size: 1.2rem;
-    transition: color 0.3s ease-in-out;
-    font-weight:600;
+    color: #333 !important; /* Darker text for better contrast */
+    font-size: 1.15rem; /* Slightly larger font size for Home, About Us, Contact */
+    font-weight: 500; /* Medium weight */
+    position: relative; /* For the underline effect */
+    transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+    padding-top: 0.5rem; /* Adjust padding for better clickable area */
+    padding-bottom: 0.5rem;
 }
 
-/* Hover Effect */
-.nav-hover:hover {
-    color: white !important; /* Changes color on hover */
+.nav-link:hover,
+.nav-link.active { /* Using Bootstrap's .active for current page */
+    color: #36486b !important; /* Accent color: Deep Muted Blue on hover/active */
+    font-weight: 600; /* Slightly bolder on hover/active */
 }
 
-/* Adjusting Icon Size */
-.fa-user-graduate {
-    font-size: 1.7rem;
+/* Underline effect on hover/active */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #36486b; /* Accent color: Deep Muted Blue for underline */
+    bottom: -5px; /* Position below the link */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
 }
 
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%; /* Expand underline on hover/active */
+}
+
+
+/* --- Toggler Button for Mobile --- */
 .custom-navbar .navbar-toggler {
-    border-color: #DA70D6;
-  }
-   
-  .custom-navbar .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(218,112,214, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
+    border-color: rgba(0, 0, 0, 0.1); /* Lighter border color */
+    padding: 0.4rem 0.6rem;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.custom-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(54, 72, 107, 0.25); /* Focus ring with Accent Color */
+}
+
+/* Custom Toggler Icon (using a darker, clearer SVG) */
+.custom-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- Login/Register/Logout Buttons --- */
+.right-nav-buttons .btn {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.3rem;
+    transition: all 0.3s ease-in-out;
+    margin-left: 0.5rem; /* Space between buttons */
+}
+
+.right-nav-buttons .btn-outline-primary {
+    color: #2c3e50; /* Brand dark blue for outline text (Login button default color) */
+    border-color: #2c3e50;
+}
+
+.right-nav-buttons .btn-outline-primary:hover {
+    background-color: #2c3e50;
+    color: white; /* Text becomes white on hover */
+    border-color: #2c3e50;
+}
+
+.right-nav-buttons .btn-primary { /* This targets your Register button */
+    background-color: #2c3e50; /* Peek Learn Dark Blue */
+    border-color: #2c3e50; /* Peek Learn Dark Blue */
+    color: white; /* Ensure text is white for contrast */
+}
+
+.right-nav-buttons .btn-primary:hover {
+    background-color: #1e2a36; /* Slightly darker shade of Peek Learn Dark Blue for hover */
+    border-color: #1e2a36; /* Slightly darker shade of Peek Learn Dark Blue for hover */
+}
+
+/* All former red danger colors are now the new accent blue */
+.right-nav-buttons .btn-danger {
+    background-color: #36486b; /* Changed from red to NEW ACCENT COLOR */
+    border-color: #36486b; /* Changed from red to NEW ACCENT COLOR */
+}
+
+.right-nav-buttons .btn-danger:hover {
+    background-color: #2b3956; /* Darker shade of NEW ACCENT COLOR for hover */
+    border-color: #2b3956; /* Darker shade of NEW ACCENT COLOR for hover */
+}
+
+/* Icons within buttons */
+.right-nav-buttons .btn i {
+    margin-right: 0.5rem;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991.98px) { /* Adjust for desktop (lg) breakpoint down */
+    .custom-navbar .navbar-collapse {
+        background-color: rgba(255, 255, 255, 0.95); /* Solid background when collapsed */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow when expanded */
+        padding: 1rem; /* Adjusted padding */
+        border-radius: 0.5rem;
+        width: 100%;
+        position: static; /* Let it flow naturally */
+        transform: none; /* Remove translation */
+        left: auto; /* Remove left positioning */
+        z-index: 999;
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: center; /* Center items in collapsed menu */
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .navbar-nav .nav-item {
+        margin: 0.5rem 0;
+    }
+
+    .nav-link::after {
+        bottom: -2px;
+    }
+
+    .right-nav-buttons {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .right-nav-buttons .nav-item {
+        margin-bottom: 0.5rem;
+        width: 80%;
+    }
+
+    .right-nav-buttons .btn {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 575.98px) { /* Extra small devices */
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    .navbar-brand .brand-icon {
+        font-size: 1.7rem;
+    }
+    .custom-navbar {
+        padding: 0.5rem 1rem;
+        min-height: 60px;
+    }
+}
+
+
+/* --- Updated Colors for About Us Page (from previous suggestions) --- */
+/* (Ensure these are in your about-us.component.css or a global stylesheet) */
+
+/* For your About Us page header background */
+.header {
+    background: linear-gradient(135deg, #34495e 0%, #5d748f 100%); /* Primary color and a slightly lighter shade */
+}
+
+/* For your Mission & Vision section background */
+.mission-vision {
+    background-color: #ecf0f1; /* Secondary color (light gray) */
+}
+
+/* For your Why Choose Us section headings */
+.why-us h2, .why-us h3 {
+    color: #2c3e50; /* Text (Headings) color */
+}
+
+/* For icons in Why Choose Us (use Accent color) */
+.why-us .feature-card .icon-wrapper {
+    background-color: rgba(54, 72, 107, 0.1); /* NEW ACCENT COLOR: Deep Muted Blue with transparency */
+}
+
+.why-us .feature-card .icon-wrapper .icon-hover-effect:hover {
+    color: #36486b !important; /* NEW ACCENT COLOR: Deep Muted Blue on hover */
+}
+
+/* For your CTA section */
+.cta {
+    background: linear-gradient(45deg, #34495e, #2c3e50); /* Primary and Heading Text color for dark gradient */
+}
+
+.cta .btn-primary {
+    background-color: #36486b; /* NEW ACCENT COLOR: Deep Muted Blue */
+    border-color: #36486b; /* NEW ACCENT COLOR: Deep Muted Blue */
+}
+
+.cta .btn-primary:hover {
+    background-color: #2b3956; /* Darker Deep Muted Blue for hover */
+    border-color: #2b3956; /* Darker Deep Muted Blue for hover */
+}
+
+.glow-on-hover {
+    box-shadow: 0 0 15px rgba(54, 72, 107, 0.4); /* NEW ACCENT COLOR: Deep Muted Blue glow */
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 25px rgba(54, 72, 107, 0.8), 0 0 40px rgba(54, 72, 107, 0.6), 0 0 60px rgba(54, 72, 107, 0.4); /* NEW ACCENT COLOR: Deep Muted Blue glow */
+}

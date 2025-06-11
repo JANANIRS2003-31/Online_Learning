@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">You are enrolled in {{ enrolledCourses.length }} courses</h2>
+
+  <!-- ✅ Show loading spinner while data is being fetched -->
+  <div *ngIf="isLoading" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- ✅ Display courses after loading completes -->
+  <div *ngIf="!isLoading && enrolledCourses.length > 0; else noCourses" class="row">
+    <div class="col-md-4 mb-4" *ngFor="let course of enrolledCourses">
+      <div class="card shadow-sm h-100">
+        <img [src]="course.imageUrl || 'default.jpg'" class="card-img-top" alt="{{ course.courseTitle }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ course.courseTitle }}</h5>
+          <p class="card-text">{{ course.courseDescription }}</p>
+          <button class="btn btn-primary w-100" (click)="navigateToCourseContent(course.courseId)">Start Learning</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCourses>
+    <div class="alert alert-warning text-center">
+      <p>You have not enrolled in any courses yet.</p>
+    </div>
+  </ng-template>
+</div>

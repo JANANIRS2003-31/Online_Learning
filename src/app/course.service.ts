@@ -32,10 +32,16 @@ export class CourseService {
   updateCourse(course: any): Observable<any> {
     return this.http.put('http://localhost:9090/course/update', course);
   }
+
+  getEnrolledCoursesByUser(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:9090/enroll/fetchCoursesByUserId/${userId}`);
+  }
+  getCourseDetails(courseId: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:9090/course/fetchById/${courseId}`);
+  }
 }
 
 export class enrolment{
   userId:number;
   courseId:number;
 }
-

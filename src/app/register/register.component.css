@@ -4,14 +4,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;
+    /* user-select: none; /* Keep this if you want to prevent text selection */
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Consistent font */
 }
 
 .bg-img {
-    background: url('/reg.jpg');
+    background: url('/reg.jpg') center center / cover no-repeat; /* Ensure correct path and cover */
     height: 100vh;
-    background-size: cover;
-    background-position: center;
+    display: flex; /* Use flex for easy centering of content */
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Needed for ::after pseudo-element */
+    overflow: hidden; /* Prevent background content from showing outside */
 }
 
 .bg-img:after {
@@ -21,104 +28,206 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.7); /* Dark overlay */
+    z-index: 1; /* Ensure overlay is above background image */
 }
 
 .content {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    z-index: 899;
+    position: relative; /* Position relative to .bg-img */
+    z-index: 2; /* Ensure content is above the overlay */
     text-align: center;
     padding: 35px 32px;
     width: 500px;
-    transform: translate(-50%,-50%);
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.08); /* Slightly more opaque for better readability */
     box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px); /* Increased blur for stronger effect */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 8px; /* Slightly more rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Softer border */
 }
 
 .content header {
     color: white;
-    font-size: 33px;
-    font-weight: 600;
+    font-size: 36px; /* Slightly larger header */
+    font-weight: 700; /* Bolder */
     margin-bottom: 35px;
     font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Subtle text shadow */
 }
 
 .field {
     position: relative;
-    height: 45px;
+    height: 48px; /* Slightly taller fields */
     width: 100%;
     display: flex;
-    background: rgba(255,255,255,0.94);
+    background: rgba(255,255,255,0.98); /* Near-white background for input */
+    border-radius: 5px; /* Rounded corners for fields */
+    overflow: hidden; /* Hide anything outside the border-radius */
+    border: 1px solid transparent; /* Default transparent border */
+    transition: all 0.3s ease; /* Smooth transition for focus/error */
 }
 
+/* Add focus and error state for fields */
+.field:focus-within {
+    border-color: #36486b; /* Accent blue on focus */
+    box-shadow: 0 0 0 2px rgba(54, 72, 107, 0.3); /* Soft focus ring */
+}
+
+.field.is-invalid { /* Class applied by Angular when invalid and touched */
+    border-color: #e74c3c; /* Red border for invalid fields */
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.3);
+}
+
+
 .field span {
-    color: #222;
-    width: 40px;
-    line-height: 45px;
+    color: #555; /* Darker icon color */
+    width: 50px; /* Wider icon area */
+    line-height: 48px;
+    font-size: 18px; /* Larger icon */
+    text-align: center;
+    background: #f0f0f0; /* Light background for icon area */
 }
 
 .field input, .field select {
     height: 100%;
-    width: 100%;
+    width: calc(100% - 50px); /* Account for icon width */
     background: transparent;
     border: none;
     outline: none;
-    color: #222;
-    font-size: 16px;
+    color: #333; /* Darker text input color */
+    font-size: 17px;
+    padding: 0 15px; /* Internal padding */
     font-family: 'Poppins', sans-serif;
+    appearance: none; /* Remove default select styles */
+}
+
+.field select {
+    cursor: pointer;
+    background-color: #f0f0f0; /* Ensure background color */
+    padding-right: 30px; /* Space for a custom dropdown arrow if needed */
 }
 
 .space {
-    margin-top: 16px;
+    margin-top: 20px; /* More space between fields */
 }
 
+/* Validation Error Messages */
+.validation-error {
+    color: #e74c3c; /* Red color for error messages */
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 10px; /* Space below the error message */
+    text-align: left; /* Align error messages to the left */
+    padding-left: 5px;
+}
+
+/* Password Show/Hide Button */
 .show {
     position: absolute;
-    right: 13px;
-    font-size: 13px;
+    right: 15px;
+    font-size: 14px;
     font-weight: 700;
-    color: #222;
-    display: none;
+    color: #555; /* Muted color */
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+    line-height: 48px; /* Vertically align with input */
+    padding-left: 5px; /* Prevent text from touching */
+    transition: color 0.3s ease;
 }
 
-.pass-key:valid ~ .show {
+.show:hover {
+    color: #36486b; /* Accent blue on hover */
+}
+
+/* Styles for when password is valid to show/hide */
+/* This specific rule was for non-Angular JS. In Angular, you'd toggle a class based on 'showPassword' */
+/* .pass-key:valid ~ .show {
     display: block;
-}
+} */
 
+
+/* Submit Button */
 .field input[type="submit"] {
-    background: #3498db;
-    border: 1px solid #2691d9;
+    background: #36486b; /* Your accent blue */
+    border: 1px solid #36486b;
     color: white;
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: 19px; /* Slightly larger text */
+    letter-spacing: 1.2px; /* More prominent letter spacing */
     font-weight: 600;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+    border-radius: 5px; /* Match field border-radius */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ensure full width */
+    height: 48px; /* Match input height */
 }
 
 .field input[type="submit"]:hover {
-    background: #2691d9;
+    background: #2b3956; /* Darker accent blue on hover */
+    transform: translateY(-2px); /* Subtle lift */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+.field input[type="submit"]:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
+}
+
+/* Signup Link */
 .signup {
-    font-size: 15px;
+    font-size: 16px; /* Slightly larger text */
     color: white;
     font-family: 'Poppins', sans-serif;
+    margin-top: 25px; /* More space above signup link */
 }
 
 .signup a {
-    color: #3498db;
+    color: #6a9ce4; /* A brighter blue for the link */
     text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .signup a:hover {
+    color: #3498db; /* Standard blue on hover */
     text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .content {
+        width: 90%; /* Adjust width for smaller screens */
+        padding: 25px 20px;
+    }
+    .content header {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    .field {
+        height: 45px;
+    }
+    .field span {
+        width: 45px;
+        line-height: 45px;
+        font-size: 16px;
+    }
+    .field input, .field select {
+        width: calc(100% - 45px);
+        font-size: 16px;
+    }
+    .show {
+        line-height: 45px;
+        font-size: 13px;
+    }
+    .field input[type="submit"] {
+        font-size: 17px;
+        height: 45px;
+    }
+    .signup {
+        font-size: 14px;
+    }
 }

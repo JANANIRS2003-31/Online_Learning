@@ -1,0 +1,26 @@
+<div class="container mt-5" *ngIf="courseDetails">
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <h2 class="card-title text-center">{{ courseDetails.courseTitle }}</h2>
+        <p class="card-text">{{ courseDetails.courseDescription }}</p>
+        <h4>Course Content:</h4>
+        <p>{{ courseDetails.courseContent }}</p>
+        
+    <h4>Course Videos:</h4>
+        <div class="video-container">
+          <div *ngFor="let videoLink of sanitizedVideoLinks">
+            <iframe width="560" height="315" [src]="videoLink" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+         <div class="quiz-button">
+          <h4>Attend The Quiz</h4>
+        <button *ngIf="userRole === 'STUDENT'" class="btn-quiz w-100 mt-3" (click)="navigateToQuiz(courseId)" style="background-color: #44526e; color: white;">
+          Start Quiz
+        </button>
+      </div>
+  </div>
+  
+  <ng-template #loading>
+    <p>Loading course details...</p>
+  </ng-template>
+  

@@ -1,0 +1,84 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Quizzes for {{ courseDetails?.courseTitle }}</h2>
+
+  <button *ngIf="userRole === 'INSTRUCTOR'" class="btn btn-success mb-3" (click)="showQuizCreationForm()">Create New Quiz</button>
+
+  <div *ngIf="isCreatingQuiz" class="card mt-3 p-3">
+    <h4>{{ isEditQuizMode ? 'Edit Quiz' : 'Create New Quiz' }}</h4>
+    <form (ngSubmit)="saveQuiz()">
+      <div class="mb-3">
+        <label class="form-label">Quiz Title:</label>
+        <input type="text" class="form-control" [(ngModel)]="newQuiz.title" name="title" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Total Marks:</label>
+        <input type="number" class="form-control" [(ngModel)]="newQuiz.totalMarks" name="totalMarks" required>
+      </div>
+
+      <div class="mb-3">
+        <h5>Questions & Options:</h5>
+        <div *ngFor="let key of getQuestionKeys()" class="mb-3 p-3 border rounded">
+          <input type="text" class="form-control mb-2" [(ngModel)]="newQuiz.questions[key]" placeholder="Enter question" name="question{{key}}" required>
+          
+          <!-- Options List -->
+          <div *ngFor="let optIndex of getOptionKeys(+key)" class="d-flex gap-2 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="newQuiz.options[key][optIndex]" placeholder="Enter option" name="option{{key}}{{optIndex}}">
+            <button type="button" class="btn btn-danger" (click)="removeOption(+key, optIndex)">Remove</button>
+          </div>
+          <button type="button" class="btn btn-secondary mt-2" (click)="addOption(+key)">Add Option</button>
+      
+          <!-- Correct Answer Selection -->
+          <h5 style="color: black; padding-top: 3rem;">Correct Answer:</h5>
+          <select class="form-select mt-2" [(ngModel)]="newQuiz.correctAnswers[key]" name="correctAnswer{{key}}">
+            <option *ngFor="let opt of newQuiz.options[key]" [value]="opt">{{ opt }}</option>
+          </select>
+      
+          <button type="button" class="btn btn-danger mt-2" (click)="removeQuestion(+key)">Remove Question</button>
+        </div>
+        <button type="button" class="btn btn-secondary mt-2" (click)="addQuestion()">Add Question</button>
+      </div>
+      
+
+      <button type="submit" class="btn btn-success w-100">{{ isEditQuizMode ? 'Update Quiz' : 'Save Quiz' }}</button>
+      <button type="button" class="btn btn-warning w-100 mt-2" (click)="cancelQuizCreation()">Cancel</button>
+    </form>
+  </div>
+
+  <!-- ✅ Pagination Controls -->
+  <div class="d-flex justify-content-between mb-3">
+    <button class="btn btn-secondary" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage * quizzesPerPage >= quizzes.length">Next</button>
+  </div>
+
+  <!-- ✅ Display Quizzes in Card Format -->
+  <div *ngIf="paginatedQuizzes.length > 0; else noQuiz" class="row">
+    <div class="col-md-4 mb-4" *ngFor="let quiz of paginatedQuizzes">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ quiz.title }}</h5>
+          <p><strong>Total Questions:</strong> {{ quiz.totalQuestions }}</p>
+          <p><strong>Marks:</strong> {{ quiz.totalMarks }}</p>
+
+          <!-- ✅ Student Quiz Start Button -->
+          <button *ngIf="userRole === 'STUDENT'" class="btn btn-primary w-100" (click)="startQuiz(quiz.quizId)">
+            Take Quiz ({{ quizTimer / 60 }} min)
+          </button>
+
+          <!-- ✅ Instructor Quiz Management -->
+          <div *ngIf="userRole === 'INSTRUCTOR'" class="d-grid gap-2">
+            <button class="btn btn-warning" (click)="updateQuiz(quiz)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteQuiz(quiz.quizId)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Quiz Available Message -->
+  <ng-template #noQuiz>
+    <div class="alert alert-warning text-center">
+      <p>No quizzes available for this course.</p>
+    </div>
+  </ng-template>
+</div>

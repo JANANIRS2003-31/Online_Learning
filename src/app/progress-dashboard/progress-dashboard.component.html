@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Hello! {{username | uppercase}}</h2>
+    <h3>Your Progress Dashboard</h3>
+  
+    <div *ngIf="progressData">
+      <div *ngFor="let course of progressData.courses" class="card mt-3">
+        <div class="card-body">
+          <h4>{{ course.courseTitle }}</h4>
+          <p>{{ course.courseDescription }}</p>
+  
+          <p><strong>Completion: {{ course.courseCompletionPercentage }}%</strong></p>
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              [style.width]="course.courseCompletionPercentage + '%'"
+            ></div>
+          </div>
+  
+          <h5 class="mt-3">Quiz Progress</h5>
+          <table class="table table-bordered mt-2">
+            <thead>
+              <tr>
+                <th>Quiz ID</th>
+                <th>Score</th>
+                <th>Total Marks</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let quiz of course.quizzes">
+                <td>{{ quiz.quizId }}</td>
+                <td>{{ quiz.score }}</td>
+                <td>{{ quiz.totalMarks }}</td>
+                <td>
+                  <div class="progress">
+                    <div
+                      class="progress-bar bg-info"
+                      role="progressbar"
+                      [style.width]="quiz.progressPercentage + '%'"
+                    ></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

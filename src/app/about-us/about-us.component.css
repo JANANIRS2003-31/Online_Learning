@@ -1,16 +1,57 @@
-/* Header */
+/* --- Header Section --- */
 .header {
-    padding-top: 3rem;
+    /* A subtle gradient gives a modern feel */
+    background: linear-gradient(135deg, #2c3e50 0%, #5c7c9c 100%); /* Adjusted from lighten() */
+    padding-top: 5rem; /* More vertical space */
+    padding-bottom: 5rem;
+    color: white; /* Ensure text is white */
+    overflow: hidden; /* Helps with potential background animations */
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
 }
 
-.header h1,p{
-    color:black;
+.header h1 {
+    font-weight: 700; /* Bolder for impact */
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Gentle text shadow */
 }
-/* Slide-up animation */
+
+.header .tagline {
+    font-family: "Poppins", "Arial", sans-serif; /* Using the new font */
+    font-size: 1.4rem;
+    font-weight: 300; /* Lighter weight for the lead text */
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+}
+
+/* --- Section Padding --- */
+/* Apply consistent padding to all main sections */
+.about-container, .mission-vision, .why-us, .cta {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* --- General Text Styles --- */
+h2 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #2c3e50; /* Use a darker color for headings */
+}
+
+h3 {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+p {
+    font-size: 1.1rem; /* Slightly larger for readability */
+    line-height: 1.8;
+    color: #333; /* Consistent body text color */
+}
+
+/* --- Slide-up & Fade-in Animations --- */
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(100px);
+        transform: translateY(50px); /* Less aggressive slide */
     }
     to {
         opacity: 1;
@@ -18,18 +59,156 @@
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .slide-up {
-    animation: slideUp 0.8s ease-out forwards;
+    animation: slideUp 0.9s ease-out forwards; /* Slightly longer, smoother animation */
+    opacity: 0; /* Ensure elements are invisible before animation */
+}
+
+/* Manually applying delays for common steps in plain CSS */
+.slide-up[data-animation-delay="0.2s"] { animation-delay: 0.2s; }
+.slide-up[data-animation-delay="0.4s"] { animation-delay: 0.4s; }
+.slide-up[data-animation-delay="0.6s"] { animation-delay: 0.6s; }
+.slide-up[data-animation-delay="0.8s"] { animation-delay: 0.8s; }
+.slide-up[data-animation-delay="1.0s"] { animation-delay: 1.0s; }
+.slide-up[data-animation-delay="1.2s"] { animation-delay: 1.2s; }
+.slide-up[data-animation-delay="1.4s"] { animation-delay: 1.4s; }
+.slide-up[data-animation-delay="1.6s"] { animation-delay: 1.6s; }
+
+
+.animated-fade-in {
+    animation: fadeIn 1.2s ease-out forwards;
     opacity: 0;
 }
 
-/* Hover effects */
-.fas:hover {
-    transform: scale(1.2);
-    transition: 0.3s ease-in-out;
+/* --- About Section Specifics --- */
+.about-container .img-fluid {
+    border-radius: 0.75rem !important; /* More rounded corners */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.about-container .img-fluid:hover {
+    transform: scale(1.02); /* Subtle zoom on hover */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* More prominent shadow */
 }
 
-/* Glowing CTA */
-.btn-warning {
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+/* --- Mission & Vision Section Specifics --- */
+.mission-vision {
+    background-color: #f8f9fa; /* Lighter background for contrast */
+}
+.mission-vision .icon-hover-effect {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.mission-vision .icon-hover-effect:hover {
+    transform: scale(1.3); /* More pronounced scale for icons */
+    color: #f39c12 !important; /* Change color on hover */
+}
+
+/* --- Why Choose Us Section Specifics --- */
+.why-us .feature-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 2rem; /* Space between cards on smaller screens */
+}
+.why-us .feature-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+.why-us .feature-card .icon-hover-effect {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.why-us .feature-card .icon-hover-effect:hover {
+    transform: scale(1.3);
+    color: #f39c12 !important;
+}
+.why-us h2.mb-5 {
+    margin-bottom: 3rem !important; /* More space below heading */
+}
+
+/* --- Call to Action Section --- */
+.cta {
+    background: linear-gradient(45deg, #2c3e50, #20303b); /* Darker gradient, adjusted from darken() */
+}
+.cta .cta-text {
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    margin-bottom: 2rem; /* Space above button */
+}
+.cta .btn-primary { /* Changed from btn-warning to btn-primary for brand consistency */
+    background-color: #f39c12;
+    border-color: #f39c12;
+    font-weight: 600;
+    padding: 0.75rem 2.5rem; /* Larger padding */
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+.cta .btn-primary:hover {
+    background-color: #dc8b0f; /* Darken on hover, adjusted from darken() */
+    border-color: #dc8b0f;
+    transform: translateY(-3px); /* Slight lift */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+/* --- Glowing CTA Effect (Refined) --- */
+.glow-on-hover {
+    /* Initial shadow, subtle */
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.4); /* Used direct hex code for accent color */
+}
+.glow-on-hover:hover {
+    /* More prominent glow on hover */
+    box-shadow: 0 0 25px rgba(243, 156, 18, 0.8), 0 0 40px rgba(243, 156, 18, 0.6), 0 0 60px rgba(243, 156, 18, 0.4);
+}
+
+/* --- Responsive Adjustments (using Bootstrap breakpoints as a guide) --- */
+@media (max-width: 767.98px) { /* For small devices (e.g., phones) */
+    .header {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .header h1 {
+        font-size: 2.5rem; /* Adjust header font size */
+    }
+    .header .tagline {
+        font-size: 1rem; /* Adjust tagline font size */
+    }
+
+    .about-container, .mission-vision, .why-us, .cta {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .about-container .col-lg-6 {
+        margin-bottom: 2rem; /* Add space between text and image on small screens */
+    }
+    .about-container .col-lg-6:last-child {
+        margin-bottom: 0;
+    }
+
+    .mission-vision .col-md-6,
+    .why-us .col-md-4 {
+        margin-bottom: 2rem; /* Add space between columns */
+    }
+    .mission-vision .col-md-6:last-child,
+    .why-us .col-md-4:last-child {
+        margin-bottom: 0;
+    }
+
+    .feature-card {
+        padding: 1.5rem; /* Slightly less padding on small screens */
+    }
+
+    .cta .btn-lg {
+        padding: 0.6rem 2rem; /* Smaller button on mobile */
+        font-size: 1rem;
+    }
 }

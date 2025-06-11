@@ -1,0 +1,160 @@
+/* General Body & Container */
+body {
+    background-color: #eef1f6; /* A very light, calming background */
+    font-family: 'Montserrat', sans-serif; /* Modern, clean font */
+    color: #333; /* Darker default text for readability */
+  }
+  
+  .container.mt-5 {
+    max-width: 1000px; /* Optimal width for content */
+    padding: 2rem 0; /* Add vertical padding */
+  }
+  
+  /* Card Styling */
+  .card.shadow-lg {
+    border-radius: 1.5rem; /* More pronounced rounded corners */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Softer, more significant shadow */
+    overflow: hidden; /* Ensure content stays within rounded corners */
+    background-color: #ffffff; /* Crisp white background */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card.shadow-lg:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+  }
+  
+  /* Card Body & Text */
+  .card-body {
+    padding: 2.5rem; /* Generous padding inside the card */
+  }
+  
+  .card-title {
+    font-size: 2.5rem; /* Larger, more impactful title */
+    font-weight: 700;
+    color: #2c3e50; /* Dark, sophisticated blue-grey */
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .card-text {
+    font-size: 1.1rem; /* Slightly larger text for main content */
+    line-height: 1.8; /* Improved line spacing for readability */
+    color: #555; /* Medium gray for main text */
+    margin-bottom: 1.5rem;
+  }
+  
+  h4 {
+    font-size: 1.6rem; /* Prominent headings for sections */
+    color: #34495e; /* Slightly darker blue-grey */
+    font-weight: 600;
+    margin-top: 2.5rem; /* Space above headings */
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e0e6ed; /* Subtle separator */
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Video Section */
+  .video-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow videos to wrap on smaller screens */
+    gap: 2rem; /* Space between videos */
+    justify-content: center; /* Center videos when not filling row */
+    margin-bottom: 2.5rem; /* Space below video section */
+  }
+  
+  .video-container > div {
+    flex: 1 1 560px; /* Allows videos to grow/shrink but prefer 560px width */
+    max-width: 100%; /* Ensure videos don't overflow on small screens */
+    background-color: #f0f3f7; /* Slightly darker background for video frames */
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .video-container > div:hover {
+    transform: translateY(-5px); /* Lift effect on video hover */
+  }
+  
+  .video-container iframe {
+    width: 100%; /* Make iframe fill its container */
+    height: 315px; /* Standard YouTube embed height */
+    display: block;
+    border-radius: 1rem; /* Apply border-radius to iframes as well */
+  }
+  
+  
+  /* Start Quiz Button */
+  .btn-quiz {
+    background-color: #2b3956; 
+    border: none;
+    color: #ffffff;
+    padding: 1rem 2rem; /* More prominent button size */
+    font-size: 1.3rem; /* Larger font size */
+    font-weight: 600;
+    border-radius: 0.75rem; /* More rounded button */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto; /* Allow button to size based on content */
+    display: block; /* Make it a block element */
+    margin: 2rem auto 0 auto; /* Center the button and add top margin */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  }
+  
+  .btn-quiz:hover {
+    background-color: #1a2435; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Loading State */
+  ng-template #loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #777;
+    margin-top: 50px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 2rem;
+    }
+    h4 {
+      font-size: 1.4rem;
+    }
+    .video-container {
+      flex-direction: column; /* Stack videos vertically on small screens */
+      gap: 1.5rem;
+    }
+    .video-container iframe {
+      height: 250px; /* Adjust video height for smaller screens */
+    }
+    .btn-quiz {
+      font-size: 1.1rem;
+      padding: 0.8rem 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .card-img-top {
+      height: 250px; /* Further adjust image height */
+    }
+    .card-title {
+      font-size: 1.8rem;
+    }
+    .card-text {
+      font-size: 1rem;
+    }
+    .video-container iframe {
+      height: 200px; /* Further adjust video height */
+    }
+  }
+  .btn-quiz{
+    background-color: #2b3956; 
+    border: none;
+    color: #ffffff;
+
+  }

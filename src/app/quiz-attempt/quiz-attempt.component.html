@@ -1,0 +1,42 @@
+<div class="container quiz-container mt-5">
+    <div class="alert alert-info" *ngIf="quizDetails?.description">
+      <p>{{ quizDetails.description }}</p>
+    </div>
+  
+    <div class="alert alert-warning" *ngIf="!quizDetails && !isLoading">
+      <p>No quiz details available.</p>
+    </div>
+  
+    <div *ngIf="isLoading" class="text-center loading-text">
+      <p>Loading quiz details...</p>
+    </div>
+  
+    <div *ngIf="!isLoading">
+      <h2 class="quiz-title">{{ quizDetails?.title }}</h2>
+      <p class="quiz-info">Total Marks: {{ quizDetails?.totalMarks }}</p>
+  
+      <div *ngIf="submissionDetails" class="quiz-status-section">
+        <h3 class="quiz-status" [ngClass]="{'completed': submissionDetails?.status === 'Completed', 'pending': submissionDetails?.status !== 'Completed'}">
+          Quiz Status: {{ submissionDetails?.status }}
+        </h3>
+        <p class="score-text">Score: {{ submissionDetails?.score }}</p>
+        <button class="btn-back" (click)="goBack()">← Back to Quizzes</button>
+      </div>
+  
+      <div *ngIf="!submissionDetails">
+        <h3>Attempt Quiz</h3>
+        <form (ngSubmit)="submitQuiz()">
+          <div *ngFor="let question of quizDetails?.questions | keyvalue" class="question-box">
+            <p class="question-text">{{ question.value }}</p>
+            <div *ngFor="let option of quizDetails.options[+question.key]" class="option-box">
+              <label>
+                <input type="radio" [name]="'question' + question.key" [(ngModel)]="userAnswers[+question.key]" [value]="option">
+                {{ option }}
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3 btn-submit">Submit Quiz</button>
+        </form>
+      </div>
+    </div>
+  </div>

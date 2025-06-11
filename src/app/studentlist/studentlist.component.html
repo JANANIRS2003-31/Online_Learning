@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Student Information List</h2>
+
+  <div *ngIf="isLoading" class="loading-text">Loading student data...</div>
+
+  <table class="table table-striped" *ngIf="!isLoading && students.length > 0">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.courses?.length }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!isLoading && students.length === 0" class="alert alert-warning text-center">
+    No students found.
+  </div>
+</div>

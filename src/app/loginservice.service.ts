@@ -7,23 +7,19 @@ import { tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginserviceService {
-  // getLoginStatus(): boolean {
-  //   throw new Error('Method not implemented.');
-  // }
-  // logout() {
-  //   throw new Error('Method not implemented.');
-  // }
+
 
   path="http://localhost:9090/auth/authenticate"
+ // path_2="http://localhost:9090/auth/getUserId"
   
  
   constructor(private client:HttpClient,private router:Router) { }
  
   public LoginUser(loginUser: User) {
+    localStorage.setItem("username",loginUser.username);
     console.log("ins service add");
     console.log(loginUser);
     console.log();
-    this.router.navigate(["/body"])
     return this.client.post(this.path, loginUser,{responseType:'text'}).pipe(
       tap(()=>{
         this.isLoggedIn=true
@@ -40,6 +36,7 @@ logout():boolean{
 getLoginStatus(): boolean{
   return this.isLoggedIn;
 }
+
 }
 export class User{
   username:string;

@@ -1,76 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparent Registration Form</title>
-    <link rel="stylesheet" href="register.component.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-
-    <!-- Background Container -->
-    <div class="bg-img">
+<div class="bg-img">
         <div class="content">
             <header>Register</header>
-            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm)">
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                 
                 <div class="field">
                     <span class="fa fa-user"></span>
-                    <input type="text" formControlName="name" required placeholder="Enter your Name">
+                    <input type="text" formControlName="name" placeholder="Enter your Name"
+                           [class.is-invalid]="f['name'].invalid && f['name'].touched">
+                </div>
+                <div *ngIf="f['name'].invalid && f['name'].touched" class="validation-error">
+                    <span *ngIf="f['name'].errors?.['required']">Name is required.</span>
+                    <span *ngIf="f['name'].errors?.['minlength']">Name must be at least 5 characters.</span>
+                    <span *ngIf="f['name'].errors?.['maxlength']">Name cannot exceed 10 characters.</span>
                 </div>
 
                 <div class="field space">
                     <span class="fa fa-envelope"></span>
-                    <input type="email" formControlName="email" required placeholder="Enter your Email">
+                    <input type="email" formControlName="email" placeholder="Enter your Email"
+                           [class.is-invalid]="f['email'].invalid && f['email'].touched">
+                </div>
+                <div *ngIf="f['email'].invalid && f['email'].touched" class="validation-error">
+                    <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+                    <span *ngIf="f['email'].errors?.['email']">Enter a valid email address.</span>
                 </div>
 
                 <div class="field space">
                     <span class="fa fa-lock"></span>
-                    <input type="password" formControlName="password" class="pass-key" required placeholder="Password">
-                    <span class="show">SHOW</span>
+                    <input type="password" formControlName="password" class="pass-key" placeholder="Password" #passwordField
+                           [class.is-invalid]="f['password'].invalid && f['password'].touched">
+                    <span class="show" (click)="togglePasswordVisibility()">{{ showPassword ? 'HIDE' : 'SHOW' }}</span>
+                </div>
+                <div *ngIf="f['password'].invalid && f['password'].touched" class="validation-error">
+                    <span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+                    <span *ngIf="f['password'].errors?.['minlength']">Password must be at least 8 characters.</span>
+                    <span *ngIf="f['password'].errors?.['hasUpperCase']">Password must contain at least one uppercase letter.</span>
+                    <span *ngIf="f['password'].errors?.['hasLowerCase']">Password must contain at least one lowercase letter.</span>
+                    <span *ngIf="f['password'].errors?.['hasNumber']">Password must contain at least one number.</span>
+                    <span *ngIf="f['password'].errors?.['hasSpecialChar']">Password must contain at least one special character.</span>
                 </div>
 
                 <div class="field space">
                     <span class="fa fa-lock"></span>
-                    <input type="password" formControlName="passwordRepeat" required placeholder="Repeat Password">
+                    <input type="password" formControlName="passwordRepeat" placeholder="Repeat Password"
+                           [class.is-invalid]="(f['passwordRepeat'].invalid && f['passwordRepeat'].touched) || registrationForm.errors?.['mismatch']">
+                </div>
+                <div *ngIf="(f['passwordRepeat'].invalid && f['passwordRepeat'].touched) || registrationForm.errors?.['mismatch']" class="validation-error">
+                    <span *ngIf="f['passwordRepeat'].errors?.['required']">Repeat Password is required.</span>
+                    <span *ngIf="registrationForm.errors?.['mismatch']">Passwords do not match.</span>
                 </div>
 
                 <div class="field space">
                     <span class="fa fa-user-tag"></span>
-                    <select class="form-select" formControlName="roles" >
-                        <option value="admin" >Admin</option>
-                        <option value="user" >User</option>
+                    <select class="form-select" formControlName="roles"
+                            [class.is-invalid]="f['roles'].invalid && f['roles'].touched">
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="INSTRUCTOR">Instructor</option>
                     </select>
+                </div>
+                <div *ngIf="f['roles'].invalid && f['roles'].touched" class="validation-error">
+                    <span *ngIf="f['roles'].errors?.['required']">Role is required.</span>
                 </div>
 
                 <div class="field space">
-                    <input type="submit" value="REGISTER">
+                    <input type="submit" value="REGISTER" [disabled]="registrationForm.invalid">
                 </div>
 
             </form>
 
             <div class="signup">
-                Already have an account? <a href="login">Login Now</a>
+                Already have an account? <a routerLink="/login">Login Now</a>
             </div>
         </div>
     </div>
-
-    <script>
-        const pass_field = document.querySelector('.pass-key');
-        const showBtn = document.querySelector('.show');
-        showBtn.addEventListener('click', function(){
-            if(pass_field.type === "password"){
-                pass_field.type = "text";
-                showBtn.textContent = "HIDE";
-                showBtn.style.color = "#3498db";
-            } else {
-                pass_field.type = "password";
-                showBtn.textContent = "SHOW";
-                showBtn.style.color = "#222";
-            }
-        });
-    </script>
-
-</body>
-</html>

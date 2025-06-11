@@ -1,0 +1,206 @@
+/* admin-progress-dashboard.component.css */
+
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Light grey background for the entire page */
+    color: #333;
+}
+
+.container.mt-4 {
+    padding: 30px;
+    background-color: #ffffff; /* White background for the main content area */
+    border-radius: 12px; /* Softly rounded corners for the container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+    margin-top: 30px !important; /* Ensure some space from the top */
+    margin-bottom: 30px !important; /* Ensure space at the bottom */
+}
+
+h2.text-center {
+    color: #2c3e50; /* Darker, more professional heading color */
+    font-weight: 700;
+    margin-bottom: 40px; /* More space below the main heading */
+    font-size: 2.2rem;
+}
+
+/* Summary Section */
+.summary-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 35px; /* Increased margin for separation */
+    gap: 20px; /* Space between cards */
+}
+
+.summary-card {
+    text-align: center;
+    padding: 25px 20px; /* More padding inside cards */
+    flex: 1; /* Allow cards to grow and shrink evenly */
+    border-radius: 10px; /* Softly rounded corners for cards */
+    color: white;
+    font-size: 1.1rem; /* Slightly larger font for readability */
+    font-weight: 600; /* Medium bold */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for each card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+}
+
+.summary-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+}
+
+.summary-card h4 {
+    font-size: 1.3rem; /* Larger heading within cards */
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for contrast */
+}
+
+.summary-card p {
+    font-size: 2.5rem; /* Large and bold numbers for key metrics */
+    font-weight: 800; /* Extra bold */
+    line-height: 1; /* Keep number compact */
+    color: white;
+}
+
+/* Specific Summary Card Colors - Enhanced Palette */
+.bg-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient */
+}
+.bg-info {
+    background: linear-gradient(135deg, #17a2b8, #117a8b); /* Teal gradient */
+}
+.bg-success {
+    background: linear-gradient(135deg, #28a745, #1e7e34); /* Green gradient */
+}
+
+/* Charts Section */
+.row.chart-section { /* Added .chart-section for specific targeting */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex; /* Ensure flex behavior for spacing */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 25px; /* Space between chart cards */
+    justify-content: center; /* Center charts if they don't fill the row */
+}
+
+.chart-card { /* Renamed from .col-md-6, .col-md-12 for clarity and specific styling */
+    background-color: #ffffff; /* White background for charts */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    /* Removed margin-bottom here to use gap on .row.chart-section */
+    flex: 1; /* Allow cards to grow */
+    min-width: 300px; /* Ensure a minimum width for charts */
+    max-width: calc(50% - 12.5px); /* For .col-md-6 equivalent, account for gap */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover */
+}
+.chart-card:last-child { /* Specific for the col-md-12 equivalent */
+    max-width: 100%; /* Make the last chart full width */
+}
+
+
+/* Removed the minimizing/shadow increase on hover for chart cards */
+/* .chart-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+} */
+
+.chart-title {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 15px; /* Space between title and chart */
+    text-align: center;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto; /* Ensure responsiveness */
+}
+
+/* Leaderboard Section */
+.mt-4 {
+    margin-top: 40px !important; /* More space above leaderboard */
+}
+
+h3.text-center {
+    color: #2c3e50; /* Darker heading color */
+    font-weight: 600;
+    margin-bottom: 25px; /* Space below leaderboard heading */
+    font-size: 1.8rem;
+}
+
+.list-group {
+    border-radius: 10px; /* Rounded corners for the list group */
+    overflow: hidden; /* Ensures border-radius applies to children */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for the list */
+}
+
+.list-group-item {
+    padding: 15px 20px; /* More padding for list items */
+    border: none; /* Remove default list item borders */
+    border-bottom: 1px solid #eee; /* Subtle separator */
+    font-size: 1.05rem;
+    color: #555;
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+.list-group-item:last-child {
+    border-bottom: none; /* No border on the last item */
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa; /* Light background on hover */
+    transform: translateX(5px); /* Slight slide effect on hover */
+}
+
+.list-group-item span {
+    font-weight: 500;
+}
+
+.list-group-item span.badge {
+    min-width: 70px; /* Ensure badges have consistent width */
+    padding: 8px 12px;
+    border-radius: 20px; /* Pill-shaped badges */
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.3s ease; /* Smooth transition for badge colors */
+}
+
+/* Badge Colors for Leaderboard - Refined */
+.bg-gold {
+    background: linear-gradient(45deg, #ffd700, #ffc107); /* Gold gradient */
+    color: #333;
+    box-shadow: 0 2px 5px rgba(255, 215, 0, 0.4);
+}
+
+.bg-silver {
+    background: linear-gradient(45deg, #c0c0c0, #a0a0a0); /* Silver gradient */
+    color: #333;
+    box-shadow: 0 2px 5px rgba(192, 192, 192, 0.4);
+}
+
+.bg-bronze {
+    background: linear-gradient(45deg, #cd7f32, #b86e2e); /* Bronze gradient */
+    color: white;
+    box-shadow: 0 2px 5px rgba(205, 127, 50, 0.4);
+}
+
+.bg-normal {
+    background-color: #e9ecef; /* Light grey for others */
+    color: #495057;
+    box-shadow: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .summary-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .summary-card {
+        width: 90%; /* Full width on smaller screens */
+        margin-bottom: 15px;
+    }
+    .chart-card {
+        max-width: 100%; /* Full width for charts on small screens */
+    }
+}

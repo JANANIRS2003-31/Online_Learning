@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonServiceService {
+
+  userRole: string = '';
  
   constructor(private http:HttpClient) { }
   isLoggedIn:boolean=false
@@ -24,6 +26,7 @@ export class CommonServiceService {
     return localStorage.getItem('token');
   }
  
+
   getTokenPayload(): any | null {
     const token = this.getToken();
     if (!token) return null;
@@ -38,10 +41,18 @@ export class CommonServiceService {
  
   getUserRole(): string | null {
     const payload = this.getTokenPayload();
+    localStorage.setItem("userRole", payload?.roles || '');
+    this.userRole = payload?.roles || '';
     return payload?.roles || null;
   }
-  getUserId(name:String):Observable<any>{
-    // console.log(`http://localhost:9090/auth//getUserId/${name}`)
-    return this.http.get(`http://localhost:9090/auth//getUserId/${name}`); 
+  getUserId(): Observable<number> {
+    const username:string = localStorage.getItem("username");
+    if (!username) {
+      console.error("Username not found in localStorage!");
+      return new Observable<number>((observer) => observer.error("No username found"));
+    }
+  
+    return this.http.get<number>(`http://localhost:9090/auth/getUserId/${username}`);
   }
+
 }

@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const commonService=inject(CommonServiceService)
-  if(commonService.getUserRole()=="ADMIN"){
+  if(commonService.getUserRole()=="ADMIN"||commonService.getUserRole()=="STUDENT"||commonService.getUserRole()=="INSTRUCTOR"){
     return true;
     }
     else{

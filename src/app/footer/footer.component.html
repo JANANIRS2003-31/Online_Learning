@@ -1,26 +1,40 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
-            <h2>Peek Learn</h2>
+            <div class="footer-brand-name">
+                <i class="fas fa-graduation-cap brand-icon"></i>
+                <span>Peek Learn</span>
+            </div>
             <p>Empowering learners worldwide with expert-led courses.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a routerLink="/body">Home</a></li>
+                <li><a routerLink="/about">About Us</a></li>
+                <li><a routerLink="/courses">Courses</a></li>
+                <li><a routerLink="/contact">Contact</a></li>
+                <li><a routerLink="/policy">Privacy Policy</a></li> </ul>
         </div>
 
         <div class="footer-contact">
             <h4>Contact Us</h4>
-            <p>Email: support-peeklearn.com</p>
-            <p>Phone: +1 234 567 890</p>
+            <p>Email: <a href="mailto:support@peeklearn.com">support&amp;#64;peeklearn.com</a></p>
+            <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+            <p>Address: 123 Learning Lane, Knowledge City, Chennai, TN 600001</p>
         </div>
 
         <div class="footer-social">
             <h4>Follow Us</h4>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="https://facebook.com/peeklearn" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/peeklearn" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/peeklearn" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/company/peeklearn" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2025 Peek Learn. All Rights Reserved.</p>
+        <p>&copy; {{ currentYear }} Peek Learn. All Rights Reserved.</p>
     </div>
 </footer>
